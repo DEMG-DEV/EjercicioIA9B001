@@ -65,12 +65,17 @@ public class Robot {
                 break;
             case NUEVA_BUSQUEDA:
                 objetoActual = null;
+                Objeto objetoActualMe = null;
+                double d = 0.0;
+                d = 1000;
                 for (Objeto o : objetos) {
-                    if (o.isActivo()) {
-                        objetoActual = o;
-                        break;
+                    double dist = Math.sqrt(Math.pow(o.getX() - getX(), 2) + Math.pow(o.getY() - getY(), 2));
+                    if (dist < d && o.isActivo()) {
+                        d = dist;
+                        objetoActualMe = o;
                     }
                 }
+                objetoActual = objetoActualMe;
                 if (objetoActual == null) {
                     estadoActual = estados.ALEATORIO;
                 } else {
