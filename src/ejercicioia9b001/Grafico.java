@@ -41,12 +41,14 @@ public class Grafico extends JPanel {
         g2d.setColor(Color.WHITE);
         for (Objeto o : objetos) {
             if (o.isActivo()) {
+                g2d.drawString(o.getId(), o.getX(), o.getY() - 5);
                 g2d.fillRect(o.getX(), o.getY(), 10, 10);
             }
         }
 
         // bateria
         g2d.setColor(Color.GREEN);
+        g2d.drawString(bateria.getId(), bateria.getX(), bateria.getY() - 5);
         g2d.fillRect(bateria.getX(), bateria.getY(), 10, 10);
 
         // robot

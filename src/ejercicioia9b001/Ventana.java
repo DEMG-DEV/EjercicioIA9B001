@@ -41,9 +41,9 @@ public class Ventana extends JFrame implements ActionListener {
     private void init() {
         objetos = new ArrayList();
         for (int i = 0; i < 10; i++) {
-            objetos.add(new Objeto());
+            objetos.add(new Objeto(String.valueOf(i)));
         }
-        bateria = new Objeto();
+        bateria = new Objeto("Bateria");
         robot = new Robot(objetos, bateria);
         graf = new Grafico(objetos, robot, bateria);
     }

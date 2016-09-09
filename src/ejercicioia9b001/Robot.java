@@ -101,8 +101,8 @@ public class Robot {
                 }
                 break;
             case RECARGA:
-                energia = 1000;
-                estadoActual = estados.BUSQUEDA;
+                energia = 1000;                
+                estadoActual = estados.NUEVA_BUSQUEDA;
                 break;
             case ALEATORIO:
                 energia--;

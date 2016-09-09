@@ -12,15 +12,18 @@ import java.util.Random;
  * @author ragamz
  */
 public class Objeto {
+
     private int x;
     private int y;
     private boolean activo;
+    private String id;
 
-    public Objeto() {
+    public Objeto(String id) {
         Random r = new Random();
         this.x = r.nextInt(700);
         this.y = r.nextInt(500);
         this.activo = true;
+        this.id = id;
     }
 
     public int getX() {
@@ -45,5 +48,9 @@ public class Objeto {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public String getId() {
+        return id;
     }
 }
