@@ -21,22 +21,27 @@ public class Robot {
     private List<Objeto> objetos;
     private Objeto bateria;
 
+    private Objeto almacen;
+
     private Objeto objetoActual;
 
     private boolean vivo;
 
     private enum estados {
-        BUSQUEDA, NUEVA_BUSQUEDA, IR_BATERIA, RECARGA, MUERTO, ALEATORIO
+        BUSQUEDA, NUEVA_BUSQUEDA, IR_BATERIA, RECARGA, MUERTO, ALEATORIO, IR_ALMACEN
     };
 
     private estados estadoActual;
 
-    public Robot(List<Objeto> objetos, Objeto bateria) {
+    public Robot(List<Objeto> objetos, Objeto bateria, Objeto almacen) {
         this.x = 320;
         this.y = 240;
         this.energia = 800;
         this.objetos = objetos;
         this.bateria = bateria;
+
+        this.almacen = almacen;
+
         this.objetoActual = null;
         this.estadoActual = estados.NUEVA_BUSQUEDA;
         this.vivo = true;
@@ -77,7 +82,7 @@ public class Robot {
                 }
                 objetoActual = objetoActualMe;
                 if (objetoActual == null) {
-                    estadoActual = estados.ALEATORIO;
+                    estadoActual = estados.IR_ALMACEN;
                 } else {
                     estadoActual = estados.BUSQUEDA;
                 }
@@ -100,8 +105,26 @@ public class Robot {
                     estadoActual = estados.MUERTO;
                 }
                 break;
+            case IR_ALMACEN:
+                if (x < almacen.getX()) {
+                    x++;
+                } else if (x > almacen.getX()) {
+                    x--;
+                }
+                if (y < almacen.getY()) {
+                    y++;
+                } else if (y > almacen.getY()) {
+                    y--;
+                }
+                energia--;
+                if (x == almacen.getX() && y == almacen.getY()) {
+                    estadoActual = estados.MUERTO;
+                } else if (energia < 350) {
+                    estadoActual = estados.IR_BATERIA;
+                }
+                break;
             case RECARGA:
-                energia = 1000;                
+                energia = 1000;
                 estadoActual = estados.NUEVA_BUSQUEDA;
                 break;
             case ALEATORIO:

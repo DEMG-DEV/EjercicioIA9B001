@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -21,6 +22,9 @@ public class Ventana extends JFrame implements ActionListener {
     private Robot robot;
     private List<Objeto> objetos;
     private Objeto bateria;
+
+    private Objeto almacen;
+
     private Grafico graf;
     private Timer timer;
 
@@ -29,7 +33,7 @@ public class Ventana extends JFrame implements ActionListener {
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
+        
         init();
 
         timer = new Timer(10, this);
@@ -44,8 +48,9 @@ public class Ventana extends JFrame implements ActionListener {
             objetos.add(new Objeto(String.valueOf(i)));
         }
         bateria = new Objeto("Bateria");
-        robot = new Robot(objetos, bateria);
-        graf = new Grafico(objetos, robot, bateria);
+        almacen = new Objeto("Almacen");
+        robot = new Robot(objetos, bateria, almacen);
+        graf = new Grafico(objetos, robot, bateria, almacen);
     }
 
     @Override

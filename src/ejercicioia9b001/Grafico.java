@@ -21,10 +21,13 @@ public class Grafico extends JPanel {
     private Robot robot;
     private Objeto bateria;
 
-    public Grafico(List<Objeto> objetos, Robot robot, Objeto bateria) {
+    private Objeto almacen;
+
+    public Grafico(List<Objeto> objetos, Robot robot, Objeto bateria, Objeto almacen) {
         this.objetos = objetos;
         this.robot = robot;
         this.bateria = bateria;
+        this.almacen = almacen;
         setBackground(Color.BLACK);
     }
 
@@ -51,6 +54,11 @@ public class Grafico extends JPanel {
         g2d.drawString(bateria.getId(), bateria.getX(), bateria.getY() - 5);
         g2d.fillRect(bateria.getX(), bateria.getY(), 10, 10);
 
+        // almacen
+        g2d.setColor(Color.BLUE);
+        g2d.drawString(almacen.getId(), almacen.getX(), almacen.getY() - 5);
+        g2d.fillRect(almacen.getX(), almacen.getY(), 10, 10);
+        
         // robot
         g2d.setColor(Color.RED);
         g2d.fillRect(robot.getX(), robot.getY(), 10, 10);
